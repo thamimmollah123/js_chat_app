@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     <form onsubmit="event.preventDefault();addContact()">
+
+          <table>
+               <tr>
+                    <td>Enter Your Name:</td>
+                    <td><input type="text" name="" id="name"></td>
+               </tr>
+               <tr>
+                    <td>Text Here:</td>
+                    <td><textarea name="" id="msg" cols="30" rows="10"></textarea></td>
+               </tr>
+               <tr>
+                    <td><input type="submit" value="Add Message"></td>
+               </tr>
+          </table>
+     </form>
+     <div id="results"></div>
+     <script>
+          var Contacts=[];
+          function addContact(){
+          var name=document.getElementById("name").value;
+          var msg=document.getElementById("msg").value;
+          // console.log(name + " " + msg);
+          var c={
+               "name":name,
+               "msg":msg
+          };
+          Contacts.push(c);
+          clearInputData();
+          DisplayData();
+          console.log(Contacts);
+          }
+          function clearInputData(){
+             document.getElementById("name").value="";
+             document.getElementById("msg").value="";
+          }
+        
+          function DisplayData(){
+               var results=document.getElementById("results");
+               var container="<table border='2' id='contactlist'>";
+               container=container+"<tr>";
+               container=container+"<th>Name</th>";
+               container=container+"<th>Discription</th>";
+               container=container+"</tr>";
+               for(i=0;i<Contacts.length;i++){
+               container=container+"<tr>";
+               container=container+"<td>"+Contacts[i].name+"</td>";
+               container=container+"<td>"+Contacts[i].msg+"</td>";
+
+               }
+               container=container+"</table>";
+               results.innerHTML=container;
+          }
+
+     </script>
+</body>
+</html>
